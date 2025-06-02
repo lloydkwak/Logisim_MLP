@@ -36,9 +36,62 @@ MNIST 손글씨 숫자 인식을 위한 다층 퍼셉트론(MLP) 신경망의 �
 - [Logisim 사용법](docs/logisim_guide.md)
 - [하드웨어 설계 문서](docs/hardware_design.md)
 
-## 라이선스
 
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
+# 사용 방법
+
+## 1. 환경 설정
+
+### 필수 소프트웨어
+- **Logisim Evolution 3.8.0 이상** ([다운로드](https://github.com/logisim-evolution/logisim-evolution/releases))
+- **Python 3.8 이상** (가중치 생성용)
+
+### Python 의존성 설치
+
+## 2. 가중치 파일 생성
+
+### 2.1 Python 스크립트 실행
+
+
+### 2.2 생성되는 파일 확인
+- `weights/layer1_weights_shifted.txt` - 입력→은닉층 가중치
+- `weights/layer2_weights_shifted.txt` - 은닉→출력층 가중치  
+- `weights/layer1_bias_shifted.txt` - 은닉층 바이어스
+- `weights/layer2_bias_shifted.txt` - 출력층 바이어스
+
+## 3. Logisim 회로 실행
+
+### 3.1 회로 파일 열기
+1. **Logisim Evolution** 실행
+2. **File → Open** 선택
+3. `MLP_circit.circ` 파일 열기
+
+### 3.2 가중치 ROM 로딩
+1. **HiddenLayer** 서브회로 더블클릭하여 진입
+2. **가중치 ROM** 컴포넌트 우클릭 → **Load Image** 선택
+3. `weights/layer1_weights_shifted.txt` 파일 로드
+4. **바이어스 ROM** 컴포넌트에 `weights/layer1_bias_shifted.txt` 로드
+5. **OutputLayer** 서브회로에서도 동일하게 layer2 파일들 로드
+
+### 3.3 시뮬레이션 설정
+1. **Simulate → Tick Frequency** 선택
+2. **4.1 KHz** 이상으로 설정
+3. **Simulate → Ticks Enabled** 체크 (Ctrl+K)
+
+## 4. 테스트 실행
+
+### 4.1 기본 테스트
+1. **시뮬레이션 시작**: Ctrl+K 또는 Simulate → Ticks Enabled
+2. **Clock** 신호가 동작하는지 확인
+3. **RGB Video**에 조이스틱을 활용하여 숫자 작성
+4. **start** input을 1로 변경하면 연산 시작
+5. 30-40초 후 **7-Segment Display**에서 결과 확인 (0-9 숫자)
+
+### 4.2 단계별 디버깅
+1. **시뮬레이션 속도 조정**: Simulate → Tick Frequency → **1 Hz**
+2. **프로브 도구** 사용하여 신호 확인
+3. **InputLayer** 출력 확인: 256개 픽셀 값이 올바른지
+4. **HiddenLayer** 출력 확인: 128개 뉴런 출력 값
+5. **OutputLayer** 출력 확인: 10개 클래스 점수
 
 ## 개발자
 
