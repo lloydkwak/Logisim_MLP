@@ -45,8 +45,6 @@ MNIST 손글씨 숫자 인식을 위한 다층 퍼셉트론(MLP) 신경망의 �
 - **Logisim Evolution 3.8.0 이상** ([다운로드](https://github.com/logisim-evolution/logisim-evolution/releases))
 - **Python 3.8 이상** (가중치 생성용)
 
-### Python 의존성 설치
-
 ## 2. 가중치 파일 생성
 
 ### 2.1 Python 스크립트 실행
@@ -74,7 +72,7 @@ MNIST 손글씨 숫자 인식을 위한 다층 퍼셉트론(MLP) 신경망의 �
 
 ### 3.3 시뮬레이션 설정
 1. **Simulate → Tick Frequency** 선택
-2. **4.1 KHz** 이상으로 설정
+2. **1 KHz** 이상으로 설정
 3. **Simulate → Ticks Enabled** 체크 (Ctrl+K)
 
 ## 4. 테스트 실행
